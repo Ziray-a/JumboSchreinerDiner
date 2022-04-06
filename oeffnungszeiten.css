@@ -1,0 +1,50 @@
+.section1_oeff{
+    color: white;
+    padding-left: 30px;
+}
+
+.title_oeff{
+    font-size: 25px;
+    padding-bottom: 0px;
+}
+
+.table_oeff{
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+}
+
+.td1_oeff{
+    width: 40%;
+    float: left;
+}
+
+.td1_oeff ul{
+    list-style: none;
+}
+
+.td2_oeff{
+    width: 50%;
+    float: right;
+}
+
+.mapouter{
+    position:relative;
+    float: center;
+    text-align:right;
+    height:350px;
+    width:600px;
+}
+
+.gmap_canvas{
+    overflow:hidden;
+    background:none!important;
+    height:350px;
+    width:600px;
+}
+
+.img_oeff{
+    padding: 20px;
+    padding-bottom: 150px;
+    text-align: center;
+}
