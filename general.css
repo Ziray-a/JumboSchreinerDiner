@@ -8,10 +8,10 @@ body{
     color: white;
 }
 body h1{
- margin-left: 5px;
+ margin-left: 10px;
 }
-body section{
-    margin-left: 5px;
+.seitentext{
+    margin-left: 10px;
 }
 
 .navigation{
