@@ -32,15 +32,21 @@ body{
     background-color: #1a1a1a;
     text-align: left;
     width: 100%;
-    position: fixed;
-    bottom: 0;
-}
+    position: relative;
+    float: bottom;
+    clear: both;
+    overflow: hidden;
 
+}
+.navigationdown{
+    background-color: #1a1a1a;
+}
 .navigationdown img{
     float: right;
     width: 10%;
     height: 10%;
     float:top;
+    background-color: #1a1a1a;
 }
 .footer a{
     text-decoration: none;
@@ -49,5 +55,6 @@ body{
     text-size-adjust: 50%;
     text-align: left;
     float: left;
+    background-color: #1a1a1a;
 
 }
