@@ -7,7 +7,12 @@ body{
     margin:0%;
     color: white;
 }
-
+body h1{
+ margin-left: 5px;
+}
+body section{
+    margin-left: 5px;
+}
 
 .navigation{
     position: relative;
