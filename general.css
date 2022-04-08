@@ -49,7 +49,7 @@ body h1{
     float: bottom;
     clear: both;
     overflow: hidden;
-
+    z-index: 1;
 }
 .navigationdown{
     background-color: #1a1a1a;
