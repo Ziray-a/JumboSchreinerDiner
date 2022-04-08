@@ -5,9 +5,50 @@
 
 .filter_sp{
     color: white;
+    border: white;
     padding: 30px;
+    background-color: #1a1a1a;
+    border-style: solid;
+    border-width: thin;
+   
 }
 
+.Gericht_sp{
+    color:white;
+    border-radius: 6px;
+    background-color: #3d3d3d;
+    padding-right: 7%;
+    padding-top: 0.4%;
+    padding-bottom: 0.4%;
+    margin: 0.5%;
+    font-size: larger;
+
+}
+#Gerichtname_sp{
+    text-align: center;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+}
+#maxMoney_sp{
+    padding-right: 0%;
+    width: 4.5%;
+    text-align: center;
+}
+#resetFilter_sp{
+    background-color: #606672;
+    color: white;
+    border:white;
+    border-radius: 6px;
+    font-size: larger;
+    margin-bottom: 1.5%;
+    margin-top: 0.5%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    position: relative;
+    float: inline;
+    float:right;
+    
+}
 .menu_sp{
     padding: 15px;
     padding-bottom: 10%;
@@ -19,7 +60,7 @@
 
 .element_sp{
     width: 20%;
-    background-color: black;
+    background-color: #1a1a1a;
     padding-top: 10px;
     border: white;
     border-style: solid;

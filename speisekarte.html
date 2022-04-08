@@ -24,7 +24,16 @@
         <article class="text">
             <h1 class="title_sp">Speisekarte</h1>
             <section class="filter_sp">
-
+                <form class="form_sp">
+                    <select name="Gerichtart" id="Gerichtart_sp" value="Gerichtart" class="Gericht_sp">
+                        <option value="Gerichtart">Gerichtart</option>
+                        <option value="Mexikanisch">Mexikanisch</option>
+                    </select>
+                    <input type="text" name="Gerichtname" id="Gerichtname_sp" value="Gerichtname" class="Gericht_sp">
+                    <label for="maxMoney">Max:</label>
+                    <input type="number" name="maxMoney" id="maxMoney_sp" value="0.00" class="Gericht_sp" step="0.01" min="0.00">
+                    <input type="button" value="Filter Zurücksetzen" id="resetFilter_sp">
+                </form>
             </section>
             <section class="menu_sp">
                 <table>
