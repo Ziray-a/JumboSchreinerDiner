@@ -1,3 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
 .section1_oeff{
     color: white;
     padding-left: 30px;
@@ -15,7 +19,7 @@
 }
 
 .td1_oeff{
-    width: 40%;
+    width: 30%;
     float: left;
 }
 
@@ -24,27 +28,56 @@
 }
 
 .td2_oeff{
-    width: 50%;
+    width: 60%;
     float: right;
 }
 
 .mapouter{
     position:relative;
     float: center;
-    text-align:right;
-    height:350px;
-    width:600px;
+    text-align:left;
 }
 
 .gmap_canvas{
     overflow:hidden;
     background:none!important;
-    height:350px;
-    width:600px;
 }
 
 .img_oeff{
     padding: 20px;
     padding-bottom: 150px;
     text-align: center;
+}
+
+.img_oeff img{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .section1_oeff, .td1_oeff, .td2_oeff, .title_oeff{
+        text-align: center;
+        width: 100%;
+        padding: 5px;
+    }
+
+    .mapouter{
+        text-align: center;
+    }
+
+    .navigationdown img{
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    iframe{
+        text-align: center;
+        width: 300px;
+        height: 175px;
+    }
+
+    .navigationdown img{
+        visibility: hidden;
+    }
 }
