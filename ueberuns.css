@@ -10,3 +10,17 @@ section{
     margin-right: 10%;
     padding-bottom: 10%;
 }
+
+@media only screen and (max-width: 600px) {
+
+article img{
+    width: 80%;
+}
+article{
+    margin-bottom: 20%;
+}
+.navigationdown img{
+    display: hidden;
+    width: 0%;
+}
+}

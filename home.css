@@ -6,3 +6,30 @@
 float:left;
 padding-bottom: 12%;
 }
+@media only screen and (max-width: 600px) {
+
+img{
+    width:100%;
+    float: bottom;
+
+}
+.portrait{
+    padding-bottom: 3%;
+}
+section{
+    float: left;
+    padding-bottom: 40%;
+    text-align: left;
+    width:100%;
+
+}
+footer{
+    margin-top: 20%;
+    padding-left: 3%;
+}
+footer img{
+    display: none;
+}
+
+
+}

@@ -80,3 +80,20 @@
     padding: 0px;
     font-size: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+.navigationdown img{
+    width: 0;
+}
+#maxMoney_sp{
+    width:20%;
+}
+
+#resetFilter_sp{
+    margin-top: 1%;
+    margin-right: 2%;
+}
+.menu_sp{
+    margin-bottom: 20%;
+}
+}
