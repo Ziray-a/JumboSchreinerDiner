@@ -1,0 +1,28 @@
+#name{
+    width: 500px;
+}
+#beschreibung{
+    width: 500px;
+}
+#zutaten{
+    width: 500px;
+}
+#rezept{
+    width: 500px;
+}
+
+@media only screen and (max-width: 600px){
+    #name{
+        width: 300px;
+    }
+    #beschreibung{
+        width: 300px;
+    }
+    #zutaten{
+        width: 300px;
+    }
+    #rezept{
+        width: 300px;
+    }
+    
+}
