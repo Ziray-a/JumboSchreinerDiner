@@ -15,6 +15,9 @@ body h1{
 }
 
 .navigation{
+    border: white;
+    border-style: solid;
+    border-width: thin;
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -32,7 +35,10 @@ body h1{
     
 }
 .footer{
-    padding: 15px;
+    border: white;
+    border-style: solid;
+    border-width: thin;
+    padding: 0.5%;
     left: 0px;
     bottom: 0px;
     color: white;
@@ -48,11 +54,12 @@ body h1{
 .navigationdown{
     background-color: #1a1a1a;
 }
-.navigationdown img{
+
+footer img{
+    position: relative;
     float: right;
     width: 10%;
     height: 10%;
-    float:top;
     background-color: #1a1a1a;
 }
 .footer a{

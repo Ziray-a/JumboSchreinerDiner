@@ -10,7 +10,7 @@
 
 .menu_sp{
     padding: 15px;
-    padding-bottom: 150px;
+    padding-bottom: 10%;
 }
 
 .tablerow_sp{
@@ -21,6 +21,9 @@
     width: 20%;
     background-color: black;
     padding-top: 10px;
+    border: white;
+    border-style: solid;
+    border-width: thin;
 }
 
 .anzeige_sp{
