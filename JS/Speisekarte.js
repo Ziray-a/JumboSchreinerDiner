@@ -37,7 +37,7 @@ async function getbeschreibung(){
 }
 
 async function loadfood(loadforedit=false){
-    let response = await fetch("/gericht/alle");
+    let response = await fetch("http://localhost:8000/api/gericht/alle");
     gerichtjson = await response.json();
     console.log(gerichtjson)
     counter = 1;
