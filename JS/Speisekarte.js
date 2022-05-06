@@ -1,5 +1,5 @@
 //const speisekarte = require("./menuinteraction.js")
-const Essenselemt={
+Essenselement={
     id:undefined,
     class:"anzeige_sp",
     img:{
@@ -24,7 +24,9 @@ JS arbeiten und auf menu/speisekarte mit parametern unterscheiden
 GET für Speieskarte
 */
 document.addEventListener("DOMContentLoaded", ()=>{
-    table = document.getElementsByTagName("table");
+    table = document.getElementById("menu");
+    tablerow = document.getElementById("rootrow")
+    console.log(table)
     loadfood();
 // alle gerichtarten
 //eventlistener hinzufügen; filterfood
@@ -40,17 +42,19 @@ async function loadfood(loadforedit=false){
     let response = await fetch("http://localhost:8000/api/gericht/alle");
     gerichtjson = await response.json();
     console.log(gerichtjson)
-    counter = 1;
-    for(gericht of gerichtjson.body){
-        toappendgericht = Essenselemt;
-        toappendgericht.img.src=gerichtjson
-        toappendgericht.id=""
-        toappendgericht.p.innerHTML=""
-        tablerow.append(gerichtelement)
-    if(counter%4==0){
-        table.append("tr")
-
-    }
+    counter = 0;
+    row = rootrow
+    for(gericht of gerichtjson){
+           toappendgericht= '<td class="element_sp" id=gericht:' +gericht.id 
+           +'><div class="anzeige_sp"><img src="'+gericht.bildpfad
+           +'" alt="Bild eines Gerichts auf der Speisekarte"><a href="speisedetails.html?id='
+           +gericht.id +'"><p class="speise_sp">'+gericht.bezeichnung+'</p></a></div></td>'
+           tablerow.innerHTML+=toappendgericht
+        counter++;
+        if(counter%4 ==0){
+            tablerow=table.insertRow(counter/4)
+            
+        }
 
     }
     //get methode: alles

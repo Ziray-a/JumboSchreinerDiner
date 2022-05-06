@@ -24,6 +24,12 @@
     font-size: larger;
 
 }
+.anzeige_sp a{
+    text-align: center;
+    color:white;
+    text-decoration: none;
+
+}
 #Gerichtname_sp{
     text-align: center;
     padding-left: 4.5%;
