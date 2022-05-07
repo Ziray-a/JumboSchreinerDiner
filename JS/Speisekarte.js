@@ -82,7 +82,7 @@ async function filterfood(){
 
     renderGerichte(gerichtjson.filter((gericht) =>{
         if(gerichtart.value=="Gerichtart" || gericht.speisenart.id==gerichtart.value){
-            if(gerichtname.value=="Gerichtname"|| gericht.bezeichnung.match("/.*"+gerichtname.value+".*/")){
+            if(gerichtname.value=="Gerichtname"|| gericht.bezeichnung.match(".*"+gerichtname.value+".*")){
                 
                 return gericht;
             }
