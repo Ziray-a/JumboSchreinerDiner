@@ -1,3 +1,5 @@
+
+
 /*
 !! WICHTIG !!
 mögliche redundanz ..> Speisekarte & Menu für editieren, vielleicht mit mehreren übergeordneten
@@ -33,10 +35,17 @@ function resetfilter(){
 }
 
 async function getbeschreibung(){
-    let response = await fetch("http://localhost:8000/api/gericht/gib/"+this.attributes.gid.value);
-    beschreibungjson= await response.json();
+    this.removeEventListener("mouseover",getbeschreibung);
+    this.children[2].style.display="initial"
+    
+    this.addEventListener("mouseout", removebeschreibung)
 
 
+}
+function removebeschreibung(){
+    this.removeEventListener("mouseout",removebeschreibung);
+    this.children[2].style.display="none"
+    this.addEventListener("mouseover",getbeschreibung);
 }
 async function renderGerichte(gerichtjson){
     counter = 0;
@@ -85,7 +94,7 @@ async function filterfood(){
 
     renderGerichte(gerichtjson.filter((gericht) =>{
         if(gerichtart.value=="Gerichtart" || gericht.speisenart.id==gerichtart.value){
-            if(gerichtname.value=="Gerichtname"|| gericht.bezeichnung.match(".*"+gerichtname.value+".*")){
+            if(gerichtname.value=="Gerichtname"|| gericht.bezeichnung.toLowerCase().match(".*"+gerichtname.value+".*")){
                 
                 return gericht;
             }
@@ -109,8 +118,18 @@ function addCell(gericht,tablerow){
     toappendanchor.setAttribute("gid", gericht.id);
     var toappendparagraph=document.createElement("p")
     toappendparagraph.setAttribute("class","speise_sp")
+    toappendparagraphprize =document.createElement("p") 
+    toappendparagraphprize.setAttribute("class","speise_sp")
+    toappendparagraphprize.innerText=gericht.preis.toFixed(2) +"€"
+    var responseouterwindow= document.createElement("div");
+    responseouterwindow.setAttribute("class","test");
+    responseouterwindow.style.display="none"
+    responseouterwindow.innerText=gericht.Beschreibung
     toappendparagraph.innerText=gericht.bezeichnung
     toappendanchor.append(toappendparagraph)
+    toappendanchor.append(toappendparagraphprize)
+    toappendanchor.append(responseouterwindow)
+    
     toappendsection.append(toappendimage)
     toappendsection.append(toappendanchor)
     toappendgericht.append(toappendsection)
