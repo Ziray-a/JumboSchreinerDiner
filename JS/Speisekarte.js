@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     getGerichtsarten();
     gerichtart.onchange=filterfood;
     gerichtname.onchange=filterfood;
+    gerichtname.addEventListener("click",()=>gerichtname.value="");
     preis.onchange=filterfood;
+    filterresetbutton= document.getElementById("resetFilter_sp");
+    filterresetbutton.addEventListener("click",resetfilter)
     
 
 // alle gerichtarten
@@ -31,18 +34,31 @@ document.addEventListener("DOMContentLoaded", ()=>{
 //eventlistener hinzufügen; resetfilter
 
 });
+function resetfilter(){
+    gerichtart= document.getElementById("Gerichtart_sp");
+    gerichtname=document.getElementById("Gerichtname_sp");
+    preis=document.getElementById("maxMoney_sp");
+    gerichtart.value="Gerichtart"
+    gerichtname.value="Gerichtname"
+    preis.value=0,00;
+    loadfood()
 
-async function getbeschreibung(element){
-    let response = await fetch("http://localhost:8000/api/gericht/gib/id:"+element.gid);
+}
+
+async function getbeschreibung(){
+    let response = await fetch("http://localhost:8000/api/gericht/gib/"+this.attributes.gid.value);
     beschreibungjson= await response.json();
+    console.log(beschreibungjson.zubereitung)
+
 
 }
 async function renderGerichte(gerichtjson){
-    console.log(gerichtjson)
     counter = 0;
     tablecounter=-1;
     $("table tr").remove(); 
-    tablerow=table.insertRow(0)
+    tablerow= document.createElement("tr")
+    tablerow.setAttribute("class","tablerow_sp")
+    table.append(tablerow)
     for(gericht of gerichtjson){
         addCell(gericht,tablerow)
 
@@ -50,8 +66,10 @@ async function renderGerichte(gerichtjson){
            
         counter++;
         if(counter%4 ==0){
-            tablerow=table.insertRow(counter/4)
-            tablecounter=-1
+            tablerow= document.createElement("tr")
+            tablerow.setAttribute("class","tablerow_sp")
+            table.append(tablerow)
+            
             
         }
 
@@ -99,7 +117,6 @@ function addCell(gericht,tablerow){
     var toappendgericht=document.createElement("td");
     toappendgericht.setAttribute("gid", gericht.id);
     toappendgericht.setAttribute("class", "element_sp");
-    toappendgericht.addEventListener("onhover", getbeschreibung)
     var toappendsection=document.createElement("div");
     toappendsection.setAttribute("class","anzeige_sp")
     var toappendimage= document.createElement("img")
@@ -107,6 +124,8 @@ function addCell(gericht,tablerow){
     toappendimage.setAttribute("alt","Bild eines Gerichts auf der Speisekarte")
     var toappendanchor=document.createElement("a")
     toappendanchor.setAttribute("href","speisedetails.html?id="+gericht.id)
+    toappendanchor.addEventListener("mouseover", getbeschreibung)
+    toappendanchor.setAttribute("gid", gericht.id);
     var toappendparagraph=document.createElement("p")
     toappendparagraph.setAttribute("class","speise_sp")
     toappendparagraph.innerText=gericht.bezeichnung
