@@ -1,16 +1,7 @@
-//const speisekarte = require("./menuinteraction.js")
-
-
-
 /*
-TODO: 
-ELEMENT FÜR ESSEN definieren
-verbindung mit server herstellen
-get request senden
 !! WICHTIG !!
 mögliche redundanz ..> Speisekarte & Menu für editieren, vielleicht mit mehreren übergeordneten
 JS arbeiten und auf menu/speisekarte mit parametern unterscheiden
-GET für Speieskarte
 */
 document.addEventListener("DOMContentLoaded", ()=>{
     table = document.getElementById("menu");
@@ -20,18 +11,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
     preis=document.getElementById("maxMoney_sp");
     loadfood();
     getGerichtsarten();
-    gerichtart.onchange=filterfood;
-    gerichtname.onchange=filterfood;
+    gerichtart.addEventListener("change",filterfood);
+    gerichtname.addEventListener("change",filterfood);
     gerichtname.addEventListener("click",()=>gerichtname.value="");
-    preis.onchange=filterfood;
+    preis.addEventListener("change",filterfood);
     filterresetbutton= document.getElementById("resetFilter_sp");
     filterresetbutton.addEventListener("click",resetfilter)
     
 
-// alle gerichtarten
-
-//eventlistener hinzufügen; filterfood
-//eventlistener hinzufügen; resetfilter
 
 });
 function resetfilter(){
@@ -48,7 +35,6 @@ function resetfilter(){
 async function getbeschreibung(){
     let response = await fetch("http://localhost:8000/api/gericht/gib/"+this.attributes.gid.value);
     beschreibungjson= await response.json();
-    console.log(beschreibungjson.zubereitung)
 
 
 }
@@ -78,7 +64,6 @@ async function renderGerichte(gerichtjson){
 async function getGerichtsarten(){
     let response = await fetch("http://localhost:8000/api/speisenart/alle");
     speisenartJSON = await response.json();
-    console.log(speisenartJSON);
 
     for(speisenart of speisenartJSON){
         gerichtart.add(new Option(speisenart.bezeichnung,speisenart.id))
@@ -106,11 +91,7 @@ async function filterfood(){
             }
         }
     }))
-        //get methode: mit parametern
-    // für ergbniss element
-    // DOM element mit ergebnisswerten erstellen
-    // DOM element anhängen
-    //END for
+        
 }
 
 function addCell(gericht,tablerow){
