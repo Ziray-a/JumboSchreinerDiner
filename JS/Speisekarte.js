@@ -1,5 +1,3 @@
-
-
 /*
 !! WICHTIG !!
 mögliche redundanz ..> Speisekarte & Menu für editieren, vielleicht mit mehreren übergeordneten
