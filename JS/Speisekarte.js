@@ -121,7 +121,7 @@ function addCell(gericht,tablerow){
     toappendparagraphprize.setAttribute("class","speise_sp")
     toappendparagraphprize.innerText=gericht.preis.toFixed(2) +"€"
     var responseouterwindow= document.createElement("div");
-    responseouterwindow.setAttribute("class","test");
+    responseouterwindow.setAttribute("class","beschreibung_sp");
     responseouterwindow.style.display="none"
     responseouterwindow.innerText=gericht.Beschreibung
     toappendparagraph.innerText=gericht.bezeichnung
