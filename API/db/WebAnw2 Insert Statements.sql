@@ -332,3 +332,6 @@ INSERT INTO Produktbild (id, bildpfad, produktId) VALUES (4, 'produktbild/corsai
 -- Galerie
 INSERT INTO Galerie (name, dateigroesse, mimeType, bildpfad, erstellzeitpunkt) VALUES ('laptop.jpg', 79945, 'image/jpeg', 'galerie/laptop.jpg', '2022-04-01 12:01:02');
 INSERT INTO Galerie (name, dateigroesse, mimeType, bildpfad, erstellzeitpunkt) VALUES ('saal.jpg', 33486, 'image/jpeg', 'galerie/saal.jpg', '2022-04-01 12:10:33');
+
+INSERT INTO Gericht (id, bezeichnung, speisenartid, Beschreibung, bildpfad,preis) Values(1,"Dietz Nutz Burger",1,"Burger mit patentierter Erdnusssoße und 200g Rinderfleisch Patty 
+Beilage: Pommes Frites, Salat","./Pictures/Fatty-Foods.jpg",12,50);

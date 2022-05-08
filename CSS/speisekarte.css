@@ -63,7 +63,20 @@
 .tablerow_sp{
     padding-bottom: 15px;
 }
-
+.anzeige_sp .beschreibung_sp{
+    display: none;
+    width: 25%;
+    background-color: #1a1a1a;
+    padding-top: 10px;
+    bottom: 20%;
+    right: 10%;
+    border: white;
+    border-style: solid;
+    border-width: thin;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+}
 .element_sp{
     width: 20%;
     background-color: #1a1a1a;

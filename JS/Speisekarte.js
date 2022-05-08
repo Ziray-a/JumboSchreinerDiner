@@ -1,3 +1,6 @@
+
+
+
 /*
 !! WICHTIG !!
 mögliche redundanz ..> Speisekarte & Menu für editieren, vielleicht mit mehreren übergeordneten
@@ -120,17 +123,22 @@ function addCell(gericht,tablerow){
     toappendparagraphprize =document.createElement("p") 
     toappendparagraphprize.setAttribute("class","speise_sp")
     toappendparagraphprize.innerText=gericht.preis.toFixed(2) +"€"
-    var responseouterwindow= document.createElement("div");
+    var responseouterwindow= document.createElement("span");
     responseouterwindow.setAttribute("class","beschreibung_sp");
-    responseouterwindow.style.display="none"
-    responseouterwindow.innerText=gericht.Beschreibung
+    var parabeschreibung= document.createElement("p")
+    parabeschreibung.innerText=gericht.Beschreibung.replace("\\n","\n")
     toappendparagraph.innerText=gericht.bezeichnung
     toappendanchor.append(toappendparagraph)
     toappendanchor.append(toappendparagraphprize)
+
     toappendanchor.append(responseouterwindow)
-    
     toappendsection.append(toappendimage)
     toappendsection.append(toappendanchor)
     toappendgericht.append(toappendsection)
+    responseouterwindow.append(toappendimage.cloneNode())
+    responseouterwindow.append(responseanchor=toappendanchor.cloneNode())
+    responseanchor.append(responsepara=toappendparagraph.cloneNode())
+    responsepara.innerText=gericht.bezeichnung
+    responseouterwindow.append(parabeschreibung)
     tablerow.append(toappendgericht)
 }
