@@ -140,5 +140,6 @@ function addCell(gericht,tablerow){
     responseanchor.append(responsepara=toappendparagraph.cloneNode())
     responsepara.innerText=gericht.bezeichnung
     responseouterwindow.append(parabeschreibung)
+    responseouterwindow.animate({top:"+=150"},1000);
     tablerow.append(toappendgericht)
 }
