@@ -6,6 +6,8 @@
 mögliche redundanz ..> Speisekarte & Menu für editieren, vielleicht mit mehreren übergeordneten
 JS arbeiten und auf menu/speisekarte mit parametern unterscheiden
 */
+
+//initiale events und benögtigte elemente sammeln
 document.addEventListener("DOMContentLoaded", ()=>{
     table = document.getElementById("menu");
     tablerow = document.getElementById("rootrow");
@@ -24,6 +26,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
 });
+//fiter auf standart zurücksetzen und gerichte ungefiltert laden
 function resetfilter(){
     gerichtart= document.getElementById("Gerichtart_sp");
     gerichtname=document.getElementById("Gerichtname_sp");
@@ -35,6 +38,7 @@ function resetfilter(){
 
 }
 
+//mouseoverfunktion für beschreibungen
 async function getbeschreibung(){
     this.removeEventListener("mouseover",getbeschreibung);
     this.children[2].style.display="initial"
@@ -43,11 +47,13 @@ async function getbeschreibung(){
 
 
 }
+//mouseoutfunktion für beschreibungen
 function removebeschreibung(){
     this.removeEventListener("mouseout",removebeschreibung);
     this.children[2].style.display="none"
     this.addEventListener("mouseover",getbeschreibung);
 }
+//Gerichte itterativ einfügen
 async function renderGerichte(gerichtjson){
     counter = 0;
     tablecounter=-1;
@@ -71,6 +77,7 @@ async function renderGerichte(gerichtjson){
 
     }
 }
+//wird initial gemacht um gerichtsarten als Options in select einzufügen
 async function getGerichtsarten(){
     let response = await fetch("http://localhost:8000/api/speisenart/alle");
     speisenartJSON = await response.json();
@@ -81,21 +88,21 @@ async function getGerichtsarten(){
     
 
 }
-
+//Comm mit API und food loaden
 async function loadfood(loadforedit=false){
     let response = await fetch("http://localhost:8000/api/gericht/alle");
     gerichtjson = await response.json();
     renderGerichte(gerichtjson)
 
 }
-
+//filterfunktion für food
 async function filterfood(){
     let response = await fetch("http://localhost:8000/api/gericht/alle");
     gerichtjson= await response.json();
-
+    //Filter Arrow function, return = durch den filter durch, kein return=rausgefallen
     renderGerichte(gerichtjson.filter((gericht) =>{
         if(gerichtart.value=="Gerichtart" || gericht.speisenart.id==gerichtart.value){
-            if(gerichtname.value=="Gerichtname"|| gericht.bezeichnung.toLowerCase().match(".*"+gerichtname.value+".*")){
+            if(gerichtname.value=="Gerichtname"|| gericht.bezeichnung.toLowerCase().match(".*"+gerichtname.value.toLowerCase()+".*")){
                 if(preis.value==0 || gericht.preis <=preis.value){
                 return gericht;
                 }
