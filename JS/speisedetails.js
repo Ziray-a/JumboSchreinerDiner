@@ -7,7 +7,7 @@ async function renderHTML(currentID){
     let response = await fetch(`http://localhost:8000/api/gericht/gib/${currentID}`)
     var obj = await response.json()
     let gerichtName = obj.bezeichnung //Gerichtname
-    let gerichtArt = obj.gerichtArt //Gerichtart
+    let gerichtArt = obj.speisenart.bezeichnung //Gerichtart
     let beschreibung = obj.Beschreibung //Beschreibung
     let zutaten = obj.zutaten
     let rezept = obj.rezept
