@@ -51,18 +51,18 @@ serviceRouter.post('/gericht', function(request, response) {
     console.log('Service Gericht: Client requested creation of new record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.bezeichnung)) 
+    if (helper.isUndefined(request.body.bezeichnung) || request.body.bezeichnung == '') 
         errorMsgs.push('bezeichnung fehlt');
     if (helper.isUndefined(request.body.speisenart)) {
         errorMsgs.push('speisenart fehlt');
     } else if (helper.isUndefined(request.body.speisenart.id)) {
         errorMsgs.push('speisenart gesetzt, aber id fehlt');
     }        
-    if (helper.isUndefined(request.body.beschreibung)) 
+    if (helper.isUndefined(request.body.beschreibung) || request.body.beschreibung == '') 
         errorMsgs.push('beschreibung fehlt');
     if (helper.isUndefined(request.body.bildpfad)) 
         request.body.bildpfad = null;
-    if (helper.isUndefined(request.body.preis)) {
+    if (helper.isUndefined(request.body.preis) || request.body.preis == '') {
         errorMsgs.push('preis fehlt');
     }
     if (helper.isUndefined(request.body.bewertungen)) {

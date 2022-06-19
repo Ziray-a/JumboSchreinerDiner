@@ -7,28 +7,43 @@ Löschvorgang?
 */
 
 let submitbtn = document.getElementById("buttonsave");
-let bezeichnung = document.getElementById("name");
-let beschreibung = document.getElementById("beschreibung");
-let preis = document.getElementById("preis");
-let bild = document.getElementById("bild");
-let speiseart = document.getElementById("art");
 
+async function getGerichtsarten(){
+    let response = await fetch("http://localhost:8000/api/speisenart/alle");
+    speisenartJSON = await response.json();
+    
+    let speiseart = document.getElementById("art");
 
-
-const data = {
-    bezeichnung: bezeichnung.value,
-    speisenart: {
-        id: 3,
-        bezeichnung: "Deutsch",
-        beschreibung: "Deftig und meißtens mit viel Kartoffeln",
-        bildpfad: "none"
-    },
-    beschreibung: beschreibung.value,
-    bildpfad: bild.value,
-    preis: preis.value
+    for(spart of speisenartJSON){
+        speiseart.add(new Option(spart.bezeichnung,spart.id))
+    }  
 }
 
+document.addEventListener("DOMContentLoaded", () =>{
+    getGerichtsarten();
+})
+
 submitbtn.addEventListener("click", () =>{
+    let bezeichnung = document.getElementById("name");
+    let beschreibung = document.getElementById("beschreibung");
+    let preis = document.getElementById("preis");
+    let bild = document.getElementById("bild");
+    let speiseart = document.getElementById("art");
+
+    preis.value = preis.value.replace(",",".");
+    if(preis.value.includes(".") == false){
+        preis.value = preis.value + ".00"
+    }
+
+    const data = {
+        bezeichnung: bezeichnung.value,
+        speisenart: {
+            id: speiseart.value
+        },
+        beschreibung: beschreibung.value,
+        bildpfad: dateipfad,
+        preis: preis.value
+    };
     
     fetch('http://localhost:8000/api/gericht/', {
         method: 'POST',
