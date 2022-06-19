@@ -1,11 +1,3 @@
-
-/*
-TODO:
-POST für hinzufügen
-Löschvorgang?
-
-*/
-
 let submitbtn = document.getElementById("buttonsave");
 
 async function getGerichtsarten(){
@@ -41,7 +33,7 @@ submitbtn.addEventListener("click", () =>{
             id: speiseart.value
         },
         beschreibung: beschreibung.value,
-        bildpfad: dateipfad,
+        bildpfad: bild,
         preis: preis.value
     };
     

@@ -109,25 +109,19 @@ class GerichtDao {
         return this.loadById(result.lastInsertRowid);
     }
 
-    update(id, bezeichnung = '', speisenartId = 1, zubereitung = '', bildpfad = null, zutaten = [], bewertungen = []) {
+    update(id, bezeichnung = '', speisenartId = 1, beschreibung = '', bildpfad = null, preis = '', bewertungen = []) {
         const zutatenlisteDao = new ZutatenlisteDao(this._conn);
         zutatenlisteDao.deleteByParent(id);
         const bewertungDao = new BewertungDao(this._conn);
         bewertungDao.deleteByParent(id);
 
-        var sql = 'UPDATE Gericht SET bezeichnung=?,speisenartId=?,zubereitung=?,bildpfad=? WHERE id=?';
+        var sql = 'UPDATE Gericht SET bezeichnung=?,speisenartId=?,beschreibung=?,bildpfad=?,preis=? WHERE id=?';
         var statement = this._conn.prepare(sql);
-        var params = [bezeichnung, speisenartId, zubereitung, bildpfad, id];
+        var params = [bezeichnung, speisenartId, beschreibung, bildpfad, preis, id];
         var result = statement.run(params);
 
         if (result.changes != 1) 
             throw new Error('Could not update existing Record. Data: ' + params);
-
-        if (zutaten.length > 0) {
-            for (var element of zutaten) {
-                zutatenlisteDao.create(id, element.zutat.id, element.menge, element.einheit.id);
-            }
-        }
 
         if (bewertungen.length > 0) {
             for (var element of bewertungen) {
