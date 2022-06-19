@@ -10,14 +10,14 @@ async function renderHTML(currentID){
     let gerichtArt = obj.speisenart.bezeichnung //Gerichtart
     let beschreibung = obj.Beschreibung //Beschreibung
     let zutaten = obj.zutaten
-    let rezept = obj.rezept
+    let preis = obj.preis
     let bildpfad = obj.bildpfad
 
     document.getElementById('name').innerHTML = gerichtName
     document.getElementById('art').innerHTML = gerichtArt
     document.getElementById('beschreibung').innerHTML = beschreibung
     document.getElementById('zutaten').innerHTML = zutaten
-    document.getElementById('rezept').innerHTML = rezept
+    document.getElementById('preis').innerHTML = preis
 
     let input = document.getElementById('bild')
     input.setAttribute('type', 'image')
