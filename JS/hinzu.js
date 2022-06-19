@@ -23,7 +23,7 @@ submitbtn.addEventListener("click", () =>{
     let speiseart = document.getElementById("art");
 
     preis.value = preis.value.replace(",",".");
-    if(preis.value.includes(".") == false){
+    if(preis.value.includes(".") == false && preis.value){
         preis.value = preis.value + ".00"
     }
 
