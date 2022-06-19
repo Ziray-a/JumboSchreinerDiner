@@ -1,27 +1,25 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     let currentID = window.location.search.substring(1).split('=')[1]
-    console.log(currentID);
     renderHTML(currentID)
 })
 
 async function renderHTML(currentID){
     let response = await fetch(`http://localhost:8000/api/gericht/gib/${currentID}`)
     var obj = await response.json()
-    console.log(obj);
-    console.log(obj.id);
-    let gerichtName = obj.bezeichnung
-    let gerichtArt = obj.gerichtArt
-    let beschreibung = obj.beschreibung
+    let gerichtName = obj.bezeichnung //Gerichtname
+    let gerichtArt = obj.gerichtArt //Gerichtart
+    let beschreibung = obj.Beschreibung //Beschreibung
     let zutaten = obj.zutaten
+    let rezept = obj.rezept
     let bildpfad = obj.bildpfad
 
-    document.getElementById('GerichtName').setAttribute('value', gerichtName)
-    document.getElementById('GerichtArt').value = gerichtArt
-    document.getElementById('Beschreibung').value = beschreibung
-    document.getElementById('Zutaten').value = zutaten
-    let ImageField = document.getElementById('Bild')
-    ImageField.parentNode.removeChild(ImageField)
-    var input = document.createElement('input')
+    document.getElementById('name').innerHTML = gerichtName
+    document.getElementById('art').innerHTML = gerichtArt
+    document.getElementById('beschreibung').innerHTML = beschreibung
+    document.getElementById('zutaten').innerHTML = zutaten
+    document.getElementById('rezept').innerHTML = rezept
+
+    let input = document.getElementById('bild')
     input.setAttribute('type', 'image')
     input.setAttribute('gid', 'Bild')
     input.setAttribute('src', bildpfad)
