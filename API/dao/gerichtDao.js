@@ -86,23 +86,19 @@ class GerichtDao {
         return false;
     }
 
-    create(bezeichnung = '', speisenartId = 1, zubereitung = '', bildpfad = null, zutaten = [], bewertungen = []) {
+    create(bezeichnung = '', speisenartId = 1, beschreibung = '', bildpfad = null, preis = '', bewertungen = []) {
         const zutatenlisteDao = new ZutatenlisteDao(this._conn);
         const bewertungDao = new BewertungDao(this._conn);
 
-        var sql = 'INSERT INTO Gericht (bezeichnung,speisenartId,zubereitung,bildpfad) VALUES (?,?,?,?)';
+        var sql = 'INSERT INTO Gericht (bezeichnung,speisenartId,beschreibung,bildpfad,preis) VALUES (?,?,?,?,?)';
         var statement = this._conn.prepare(sql);
-        var params = [bezeichnung, speisenartId, zubereitung, bildpfad];
+        var params = [bezeichnung, speisenartId, beschreibung, bildpfad,preis];
         var result = statement.run(params);
 
         if (result.changes != 1) 
             throw new Error('Could not insert new Record. Data: ' + params);
 
-        if (zutaten.length > 0) {
-            for (var element of zutaten) {
-                zutatenlisteDao.create(result.lastInsertRowid, element.zutat.id, element.menge, element.einheit.id);
-            }
-        }
+        
 
         if (bewertungen.length > 0) {
             for (var element of bewertungen) {

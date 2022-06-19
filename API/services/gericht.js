@@ -58,16 +58,12 @@ serviceRouter.post('/gericht', function(request, response) {
     } else if (helper.isUndefined(request.body.speisenart.id)) {
         errorMsgs.push('speisenart gesetzt, aber id fehlt');
     }        
-    if (helper.isUndefined(request.body.zubereitung)) 
-        errorMsgs.push('zubereitung fehlt');
+    if (helper.isUndefined(request.body.beschreibung)) 
+        errorMsgs.push('beschreibung fehlt');
     if (helper.isUndefined(request.body.bildpfad)) 
         request.body.bildpfad = null;
-    if (helper.isUndefined(request.body.zutatenliste)) {
-        errorMsgs.push('zutatenliste fehlt');
-    } else if (!helper.isArray(request.body.zutatenliste)) {
-        errorMsgs.push('zutatenliste fehlt');
-    } else  if (helper.isArrayEmpty(request.body.zutatenliste)) {
-        errorMsgs.push('zutatenliste ist leer');
+    if (helper.isUndefined(request.body.preis)) {
+        errorMsgs.push('preis fehlt');
     }
     if (helper.isUndefined(request.body.bewertungen)) {
         request.body.bewertungen = [];
@@ -83,7 +79,7 @@ serviceRouter.post('/gericht', function(request, response) {
 
     const gerichtDao = new GerichtDao(request.app.locals.dbConnection);
     try {
-        var obj = gerichtDao.create(request.body.bezeichnung, request.body.speisenart.id, request.body.zubereitung, request.body.bildpfad, request.body.zutatenliste, request.body.bewertungen);
+        var obj = gerichtDao.create(request.body.bezeichnung, request.body.speisenart.id, request.body.beschreibung, request.body.bildpfad, request.body.preis, request.body.bewertungen);
         console.log('Service Gericht: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {

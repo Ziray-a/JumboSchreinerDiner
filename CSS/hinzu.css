@@ -4,10 +4,10 @@
 #beschreibung{
     width: 500px;
 }
-#zutaten{
+#preis{
     width: 500px;
 }
-#rezept{
+#art{
     width: 500px;
 }
 
@@ -18,11 +18,10 @@
     #beschreibung{
         width: 300px;
     }
-    #zutaten{
+    #preis{
         width: 300px;
     }
-    #rezept{
+    #art{
         width: 300px;
     }
-    
 }

@@ -5,34 +5,38 @@ POST für hinzufügen
 Löschvorgang?
 
 */
-document.onload(initiate())
 
-
-function initiate(){
-let table = document.getElementById("tb");
-let submitbtn =document.getElementById("buttonsave");
-let namefield = document.getElementById("name");
+let submitbtn = document.getElementById("buttonsave");
+let bezeichnung = document.getElementById("name");
 let beschreibung = document.getElementById("beschreibung");
-let zutatenliste = document.getElementById("zutaten");
-let rezept = document.getElementById("rezept");
-let bild= document.getElementById("bild");
+let preis = document.getElementById("preis");
+let bild = document.getElementById("bild");
+let speiseart = document.getElementById("art");
 
-submitbtn.addEventListener("onclick", (clickevent) =>{
-clickevent.preventDefault();
-fetch('localhost:7000', {
-    method: 'POST',
-    body: {
-        bezeichnung: namefield.value,
-        zubereitung: rezept.value,
-        bildpfad:   bild.value,
-        zutatenliste: zutatenliste.value
+
+
+const data = {
+    bezeichnung: bezeichnung.value,
+    speisenart: {
+        id: 3,
+        bezeichnung: "Deutsch",
+        beschreibung: "Deftig und meißtens mit viel Kartoffeln",
+        bildpfad: "none"
     },
-    headers:{
-        "content-type": "application/json"
-    }
-})
+    beschreibung: beschreibung.value,
+    bildpfad: bild.value,
+    preis: preis.value
+}
+
+submitbtn.addEventListener("click", () =>{
+    
+    fetch('http://localhost:8000/api/gericht/', {
+        method: 'POST',
+        headers:{
+            "content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
 });
 
-    
-}
 
