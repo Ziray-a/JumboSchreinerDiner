@@ -21,7 +21,15 @@ submitbtn.addEventListener("click", () =>{
     let preis = document.getElementById("preis");
     let bild = document.getElementById("bild");
     let speiseart = document.getElementById("art");
-
+    if(!bezeichnung.value || bezeichnung.value ==""){
+        alert("Fehler: keine Bezeichnung")
+    }
+    if(!beschreibung.value || beschreibung.value ==""){
+        alert("Fehler: keine Beschreibung")
+    }
+    if(!preis.value || preis.value ==""){
+        alert("Fehler: kein Preis")
+    }
     preis.value = preis.value.replace(",",".");
     if(preis.value.includes(".") == false && preis.value){
         preis.value = preis.value + ".00"
