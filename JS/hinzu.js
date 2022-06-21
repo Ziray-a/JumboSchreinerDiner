@@ -78,5 +78,5 @@ async function clicksubmit(e){
         }
     });
 
-    //document.location.href = "./menu.html"
+    document.location.href = "./menu.html"
 }
