@@ -1,5 +1,7 @@
 let savebtn = document.getElementById("savebtn");
 let deletebtn = document.getElementById("deletebtn")
+let bildpfd;
+let id;
 
 async function getGerichtsarten(){
     let response = await fetch("http://localhost:8000/api/speisenart/alle");
@@ -18,20 +20,21 @@ async function renderHTML(currentID){
     let bezeichnung = obj.bezeichnung //Gerichtname
     let speiseart = obj.speisenart //Gerichtart
     let beschreibung = obj.Beschreibung //Beschreibung
-    let bild = obj.bildpfad
+    bildpfd = obj.bildpfad
     let preis = obj.preis
 
     document.getElementById('name').value = bezeichnung
     document.getElementById('art').value = speiseart.id
     document.getElementById('beschreibung').value = beschreibung
     document.getElementById('preis').value = preis
-    document.getElementById('bild').setAttribute("src", bild)
+    document.getElementById('bild').setAttribute("src", bildpfd)
+    return obj;
 }
 
 document.addEventListener("DOMContentLoaded", () =>{
     getGerichtsarten();
-    let id = window.location.search.substring(1).split('=')[1]
-    renderHTML(id)
+    id = window.location.search.substring(1).split('=')[1]
+    objjson = renderHTML(id)
 });
 
 
@@ -48,7 +51,7 @@ savebtn.addEventListener("click", () =>{
     if(preis.value.includes(".") == false){
         preis.value = preis.value + ".00"
     }
-
+    console.log(objjson)
     const data = {
         id: id,
         bezeichnung: bezeichnung.value,
@@ -56,7 +59,7 @@ savebtn.addEventListener("click", () =>{
             id: speiseart.value
         },
         beschreibung: beschreibung.value,
-        bildpfad: bild.src,
+        bildpfad: bildpfd,
         preis: preis.value
     }
 
@@ -67,6 +70,7 @@ savebtn.addEventListener("click", () =>{
         },
         body: JSON.stringify(data)
     })
+    document.location.href = "speisedetails.html?id=" +id
 });
 
 deletebtn.addEventListener("click", () =>{

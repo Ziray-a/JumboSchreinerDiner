@@ -48,7 +48,6 @@ async function clicksubmit(e){
     }
     
     var fData = new FormData(form)
-    var newname
     var ldata
     $.ajax({
         type: "POST",
