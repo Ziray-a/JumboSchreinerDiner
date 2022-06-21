@@ -1,4 +1,4 @@
-let submitbtn = document.getElementById("buttonsave");
+
 
 async function getGerichtsarten(){
     let response = await fetch("http://localhost:8000/api/speisenart/alle");
@@ -13,38 +13,60 @@ async function getGerichtsarten(){
 
 document.addEventListener("DOMContentLoaded", () =>{
     getGerichtsarten();
+    let submitbtn = document.getElementById("buttonsave");
+    submitbtn.addEventListener("click", clicksubmit)
+    
 })
 
-submitbtn.addEventListener("click", () =>{
+function clicksubmit(e){
+    e.preventDefault()
     let bezeichnung = document.getElementById("name");
     let beschreibung = document.getElementById("beschreibung");
     let preis = document.getElementById("preis");
     let bild = document.getElementById("bild");
+    let form = document.getElementById("uploadFormular")
     let speiseart = document.getElementById("art");
     if(!bezeichnung.value || bezeichnung.value ==""){
         alert("Fehler: keine Bezeichnung")
+        return;
     }
     if(!beschreibung.value || beschreibung.value ==""){
         alert("Fehler: keine Beschreibung")
+        return;
     }
     if(!preis.value || preis.value ==""){
         alert("Fehler: kein Preis")
+        return;
     }
     preis.value = preis.value.replace(",",".");
     if(preis.value.includes(".") == false && preis.value){
         preis.value = preis.value + ".00"
     }
-
+    if(!bild || !bild.files[0]){
+        alert("Kein bild")
+        return;
+    }
     const data = {
         bezeichnung: bezeichnung.value,
         speisenart: {
             id: speiseart.value
         },
         beschreibung: beschreibung.value,
-        bildpfad: bild,
+        bildpfad: "./API/files/" +bild.files[0].name,
         preis: preis.value
     };
+    var fData = new FormData(form)
     
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8000/api/dateiuploadeinzeln",
+        data: fData,
+        contentType: false,
+        processData: false,
+        cache: false,
+    });
+
+
     fetch('http://localhost:8000/api/gericht/', {
         method: 'POST',
         headers:{
@@ -52,6 +74,5 @@ submitbtn.addEventListener("click", () =>{
         },
         body: JSON.stringify(data)
     })
-});
-
-
+    document.location.href = "./menu.html"
+}

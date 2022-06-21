@@ -6,7 +6,6 @@ console.log('- Service DateiUploadEinzeln');
 
 serviceRouter.post('/dateiuploadeinzeln', async(request, objponse) => {
     console.log('Service DateiUploadEinzeln called');
-
     try {
 
         // if no files received, send error
@@ -17,13 +16,13 @@ serviceRouter.post('/dateiuploadeinzeln', async(request, objponse) => {
 
             // get handle on file info, in this example is 'picture' the HTML Field Name
             var picture = request.files.picture;
-            console.log(picture);
+
 
             // if we want to save the file physically in a directory (/files) on the server, we can use the 'mv' (move) function
             // if target directory is not existent, it is created automatically
             // keep in mind that the files have to use unique file names, otherwise they are overwritten!
             console.log('saving file to target directory on server');
-            //picture.mv('./files/' + picture.name);
+            picture.mv('./files/' + picture.name);
 
             
             /////////////////////////////////////////////////////////
@@ -48,6 +47,7 @@ serviceRouter.post('/dateiuploadeinzeln', async(request, objponse) => {
 
     } catch (err) {
         objponse.status(400).json({'fehler': true, 'nachricht': 'Fehler im Service'});
+        console.log(err)
     }
     
 });

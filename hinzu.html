@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./CSS/home.css">
     <link rel="stylesheet" href="./CSS/login.css">
     <link rel="stylesheet" href="./CSS/hinzu.css">
+    <script src="./JS/hinzu.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <main>
@@ -43,14 +45,17 @@
                 </tr>
                 <tr>
                     <td><label for="bild">Foto des Gerichts:</label></td>
-                    <td><input type="file" id="bild"></td>
+                    <td><form id="uploadFormular" enctype="multipart/form-data" action="http://localhost:8000/api/dateiuploadeinzeln" method="post">
+                        <input type="file" id="bild" name="picture">
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><button type="button" id="buttonsave">Speichern</button></td>
+                    <td><button type="submit" id="buttonsave">Speichern</button></td>
+                </form>
                 </tr>
             </table>
-
+           
         </article>
         <footer class="footer">
             <nav class="navigationdown">
@@ -64,7 +69,6 @@
             </nav>
         </footer>
     </main>
-    <script src="./JS/hinzu.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </body>
 </html>
