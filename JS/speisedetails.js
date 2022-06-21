@@ -21,7 +21,7 @@ async function renderHTML(currentID){
 
     let input = document.getElementById('bild')
     input.setAttribute('type', 'image')
-    input.setAttribute('gid', 'Bild')
+    input.setAttribute('gid', 'bild')
     input.setAttribute('src', bildpfad)
     input.setAttribute('alt', "Bild des Gerichts von der Speisekarte")
     input.setAttribute('width', '200')
