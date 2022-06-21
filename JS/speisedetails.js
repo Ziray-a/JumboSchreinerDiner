@@ -10,7 +10,7 @@ async function renderHTML(currentID){
     let gerichtArt = obj.speisenart.bezeichnung //Gerichtart
     let beschreibung = obj.Beschreibung //Beschreibung
     let zutaten = obj.zutaten
-    let preis = obj.preis
+    let preis = obj.preis + '€'
     let bildpfad = obj.bildpfad
 
     document.getElementById('name').innerHTML = gerichtName
