@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     
 })
 
-function clicksubmit(e){
+async function clicksubmit(e){
     e.preventDefault()
     let bezeichnung = document.getElementById("name");
     let beschreibung = document.getElementById("beschreibung");
@@ -46,17 +46,10 @@ function clicksubmit(e){
         alert("Kein bild")
         return;
     }
-    const data = {
-        bezeichnung: bezeichnung.value,
-        speisenart: {
-            id: speiseart.value
-        },
-        beschreibung: beschreibung.value,
-        bildpfad: "./API/files/" +bild.files[0].name,
-        preis: preis.value
-    };
-    var fData = new FormData(form)
     
+    var fData = new FormData(form)
+    var newname
+    var ldata
     $.ajax({
         type: "POST",
         url: "http://localhost:8000/api/dateiuploadeinzeln",
@@ -64,15 +57,26 @@ function clicksubmit(e){
         contentType: false,
         processData: false,
         cache: false,
+        dataType: "json",
+        success: function(r){
+            ldata = {
+                bezeichnung: bezeichnung.value,
+                speisenart: {
+                    id: speiseart.value
+                },
+                beschreibung: beschreibung.value,
+                bildpfad: "./API/files/" +r.fileName,
+                preis: preis.value
+            };
+            fetch('http://localhost:8000/api/gericht/', {
+                method: 'POST',
+                headers:{
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(ldata)
+            })
+        }
     });
 
-
-    fetch('http://localhost:8000/api/gericht/', {
-        method: 'POST',
-        headers:{
-            "content-type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-    document.location.href = "./menu.html"
+    //document.location.href = "./menu.html"
 }
