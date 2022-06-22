@@ -6,17 +6,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
 async function renderHTML(currentID){
     let response = await fetch(`http://localhost:8000/api/gericht/gib/${currentID}`)
     var obj = await response.json()
-    let gerichtName = obj.bezeichnung //Gerichtname
-    let gerichtArt = obj.speisenart.bezeichnung //Gerichtart
-    let beschreibung = obj.Beschreibung //Beschreibung
-    let zutaten = obj.zutaten
+    console.log(obj);
+    let gerichtName = obj.bezeichnung
+    let gerichtArt = obj.speisenart.bezeichnung
+    let beschreibung = obj.Beschreibung
     let preis = obj.preis + '€'
     let bildpfad = obj.bildpfad
 
     document.getElementById('name').innerHTML = gerichtName
     document.getElementById('art').innerHTML = gerichtArt
     document.getElementById('beschreibung').innerHTML = beschreibung
-    document.getElementById('zutaten').innerHTML = zutaten
     document.getElementById('preis').innerHTML = preis
 
     let input = document.getElementById('bild')
