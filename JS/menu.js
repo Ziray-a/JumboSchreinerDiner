@@ -59,7 +59,7 @@ function addCell(gericht,tablerow){
     toappendgericht.append(toappendsection)
     tablerow.append(toappendgericht)
 }
-
+//hi
 //Comm mit API und food loaden
 async function loadfood(loadforedit=false){
     let response = await fetch("http://localhost:8000/api/gericht/alle");
