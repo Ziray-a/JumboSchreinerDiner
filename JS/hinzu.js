@@ -73,9 +73,9 @@ async function clicksubmit(e){
                     "content-type": "application/json"
                 },
                 body: JSON.stringify(ldata)
-            })
+            }).then(document.location.href = "./menu.html")
         }
     });
 
-    document.location.href = "./menu.html"
+
 }
